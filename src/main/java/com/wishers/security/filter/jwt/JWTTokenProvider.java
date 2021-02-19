@@ -21,7 +21,7 @@ public class JWTTokenProvider {
 	public static String generateToken(User user) {
         return Jwts.builder()
 				.setHeaderParam(Header.TYPE, Header.JWT_TYPE)
-				.setSubject(user.getId().toString())
+				.setSubject(user.getUsername().toString())
 				.setId(user.getId().toString())
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.claim("updateTime", user.getUpdateTime())//Example

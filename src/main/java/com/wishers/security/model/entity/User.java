@@ -91,7 +91,6 @@ public class User extends BaseEntity implements UserDetails{
 	
 	public User(String name, String surname, Integer edad, String username, String email, String password) {
 		super();
-		this.customer = new Customer(this);
 		this.name = name;
 		this.surname = surname;
 		this.edad = edad;
@@ -108,6 +107,7 @@ public class User extends BaseEntity implements UserDetails{
 		this.enabled = true;
 		this.authenticationAttempts = MAX_AUTH_ATTEMPTS;
 		this.passwordPolicyExpDate = LocalDateTime.now().plusYears(3);
+		this.customer = new Customer(this);
 	}
 	
 	

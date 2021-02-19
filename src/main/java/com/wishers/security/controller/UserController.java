@@ -42,8 +42,8 @@ public class UserController {
 		if(userDto.getUsername().isBlank() || userDto.getPassword().isBlank()) {
 			response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Errores.PETICION_INCORRECTA);
 		}else {
-			User user = userService.getUserByUserName(userDto.getUsername());
-			response = user != null ? ResponseEntity.status(HttpStatus.ACCEPTED).body(userDto) : ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(Errores.USUARIO_PASS_INCORRECTA);
+			User user = userService.getUserByUserNameAndPassword(userDto.getUsername(), userDto.getPassword());
+			response = user != null ? ResponseEntity.status(HttpStatus.OK).body(userDto) : ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(Errores.USUARIO_PASS_INCORRECTA);
 		}
 		return response;
 	}

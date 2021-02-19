@@ -18,6 +18,9 @@ public class Customer extends BaseEntity{
 	//@ManyToMany
 	//private List<Wish> wish;
 	
+	public Customer() {
+		super();
+	}
 	
 	public Customer(User user) {
 		super();

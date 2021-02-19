@@ -30,7 +30,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	private static AuthenticationManager authenticationManager;
 	
 	public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
+        JWTAuthenticationFilter.authenticationManager = authenticationManager;
         setFilterProcessesUrl(SecurityConstants.LOG_IN);
     }
 	
