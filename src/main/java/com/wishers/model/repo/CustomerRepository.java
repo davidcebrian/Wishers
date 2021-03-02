@@ -8,6 +8,6 @@ import com.wishers.security.model.entity.User;
 @Repository
 public interface CustomerRepository extends BaseRepository<Customer, Long>{
 
-	User findByUsername(String username);
+	Customer findByUsername(String username);
 	
 }

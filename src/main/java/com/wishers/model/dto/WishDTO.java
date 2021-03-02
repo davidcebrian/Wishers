@@ -12,12 +12,19 @@ public class WishDTO {
 	private String title;
 	private String description;
 	private Long value;
-	private List<Customer> customers;
+	private List<String> customers;
+	private Boolean completed;
 	
-	public List<Customer> getCustomers() {
+	public Boolean getCompleted() {
+		return completed;
+	}
+	public void setCompleted(Boolean completed) {
+		this.completed = completed;
+	}
+	public List<String> getCustomers() {
 		return customers;
 	}
-	public void setCustomers(List<Customer> customers) {
+	public void setCustomers(List<String> customers) {
 		this.customers = customers;
 	}
 	public String getTitle() {

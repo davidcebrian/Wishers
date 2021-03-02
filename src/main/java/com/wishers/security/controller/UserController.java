@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wishers.model.dto.CustomerDTO;
+import com.wishers.model.dto.CustomerDTOConverter;
 import com.wishers.security.model.dto.UserDTO;
 import com.wishers.security.model.entity.User;
 import com.wishers.security.service.UserService;
@@ -20,6 +22,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private CustomerDTOConverter customerDtoConverter;
 	
 	@PostMapping("/sign-up")
 	public ResponseEntity<?> signUp(@RequestBody UserDTO userDto) {
@@ -43,7 +47,8 @@ public class UserController {
 			response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Errores.PETICION_INCORRECTA);
 		}else {
 			User user = userService.getUserByUserNameAndPassword(userDto.getUsername(), userDto.getPassword());
-			response = user != null ? ResponseEntity.status(HttpStatus.OK).body(userDto) : ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(Errores.USUARIO_PASS_INCORRECTA);
+			CustomerDTO customerDto = customerDtoConverter.fromCustomerToCustomerDTO(user.getCustomer());
+			response = user != null ? ResponseEntity.status(HttpStatus.OK).body(customerDto) : ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(Errores.USUARIO_PASS_INCORRECTA);
 		}
 		return response;
 	}

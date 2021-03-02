@@ -8,5 +8,5 @@ import com.wishers.security.model.entity.User;
 @Repository
 public interface WishRepository extends BaseRepository<Wish, Long>{
 
-	User findByTitle(String title);
+	Wish findByTitle(String title);
 }

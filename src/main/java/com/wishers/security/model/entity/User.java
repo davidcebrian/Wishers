@@ -84,7 +84,7 @@ public class User extends BaseEntity implements UserDetails{
 		this.lastPasswordChange = LocalDateTime.now();
 		this.locked = false;
 		this.enabled = true;
-		this.authenticationAttempts = MAX_AUTH_ATTEMPTS;
+		this.authenticationAttempts = 0;
 		this.passwordPolicyExpDate = LocalDateTime.now().plusYears(3);
 	}
 	
@@ -105,7 +105,7 @@ public class User extends BaseEntity implements UserDetails{
 		this.lastPasswordChange = LocalDateTime.now();
 		this.locked = false;
 		this.enabled = true;
-		this.authenticationAttempts = MAX_AUTH_ATTEMPTS;
+		this.authenticationAttempts = 0;
 		this.passwordPolicyExpDate = LocalDateTime.now().plusYears(3);
 		this.customer = new Customer(this);
 	}
@@ -260,6 +260,16 @@ public class User extends BaseEntity implements UserDetails{
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	

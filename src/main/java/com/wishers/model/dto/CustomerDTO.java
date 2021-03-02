@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.wishers.model.entity.Wish;
+import com.wishers.security.model.dto.UserDTO;
 import com.wishers.security.model.entity.User;
 
 @JsonInclude(Include.NON_NULL)
@@ -12,16 +13,17 @@ public class CustomerDTO {
 	
 	private String username;
 
-	private List<Wish> wishes;
+	private List<WishDTO> wishes;
 	
 	private Long points;
-	private User user;
+	
+	private UserDTO user;
 
-	public User getUser() {
+	public UserDTO getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserDTO user) {
 		this.user = user;
 	}
 
@@ -34,11 +36,11 @@ public class CustomerDTO {
 	}
 
 
-	public List<Wish> getWishes() {
+	public List<WishDTO> getWishes() {
 		return wishes;
 	}
 
-	public void setWishes(List<Wish> wishes) {
+	public void setWishes(List<WishDTO> wishes) {
 		this.wishes = wishes;
 	}
 
