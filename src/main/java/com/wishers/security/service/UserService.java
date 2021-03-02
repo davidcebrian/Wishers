@@ -40,6 +40,11 @@ public class UserService extends BasePersistenceService<User, Long> implements U
 		return user != null ? user : null;
 	}
 	
+	public User getUserByUserNameAndPassword(String username, String password) {
+		User user = userRepository.findByUsernameAndPassword(username, password);
+		return user != null ? user : null;
+	}
+	
 	public UserDTO register (UserDTO userDto) {
 		return dtoConverter.fromUserToUserDTO(userRepository.save(dtoConverter.fromUserDTOToUser(userDto)));
 	}

@@ -13,13 +13,9 @@ public class UserDTOConverter {
 	private PasswordEncoder passwordEncoder;
 	
 	public User fromUserDTOToUser(UserDTO userDto) {
-		User user = new User();
-		user.setName(userDto.getName());
-		user.setSurname(userDto.getSurname());
-		user.setEdad(userDto.getEdad());
-		
-		user.setUsername(userDto.getUsername());
-		user.setEmail(userDto.getEmail());
+		User user = new User(userDto.getName(),userDto.getSurname(), userDto.getEdad(),
+				userDto.getUsername(), userDto.getEmail(), userDto.getPassword());
+	
 		user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 		return user;
 		

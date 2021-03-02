@@ -34,6 +34,10 @@ public class Customer extends BaseEntity{
 	private Long points;
 
 
+	public Customer() {
+		super();
+	}
+	
 	public Customer(User user) {
 		super();
 		this.username = user.getUsername();
