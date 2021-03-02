@@ -26,17 +26,6 @@ public class UserDTO {
 	
 	private Customer customer;
 
-//	public UserDTO(String name, String surname, Integer edad, String username, String email, String password) {
-//	super();
-//	this.name = name;
-//	this.surname = surname;
-//	this.edad = edad;
-//	this.username = username;
-//	this.email = email;
-//	this.password = password;
-//}
-
-	
 	public String getName() {
 		return name;
 	}

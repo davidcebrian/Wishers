@@ -15,7 +15,10 @@ public abstract class BasePersistenceService<T extends BaseEntity, ID extends Se
 	
 
 	public T find(ID entityId) {
-		T entity = baseRepository.findById(entityId).get();
+		T entity = null;
+		if(entityId != null) {
+			entity = baseRepository.findById(entityId).get();			
+		}
 		return entity != null ? entity : null;
 	}
 	
