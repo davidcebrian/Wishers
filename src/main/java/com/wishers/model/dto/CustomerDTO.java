@@ -4,9 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.wishers.model.entity.Wish;
 import com.wishers.security.model.dto.UserDTO;
-import com.wishers.security.model.entity.User;
 
 @JsonInclude(Include.NON_NULL)
 public class CustomerDTO {

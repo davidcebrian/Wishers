@@ -9,9 +9,6 @@ public enum Errores {
 		PETICION_INCORRECTA("Se ha realizado una peticion incorrecta. ERROR 1"),
 		EXISTE_NICK_EMAIL("Ya existe el nickname o el email. ERROR 2"),
 		USUARIO_PASS_INCORRECTA("Usuario o contrasena incorrecta. ERROR 3"),
-		ERROR_CREAR_PARTIDA("No se ha podido crear la partida. ERROR 4"),
-		ERROR_OBTENER_PARTIDA("No se ha podido obtener la partida. ERROR 5"),
-		ERROR_INICIAR_PARTIDA("No se ha podido iniciar la partida. ERROR 6"),
 		INDETERMINADO("Error indeterminado. ERROR 999999");
 		
 		
