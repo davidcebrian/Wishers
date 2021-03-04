@@ -61,4 +61,9 @@ public class CustomerController {
 	public ResponseEntity<?> completeWish(@PathVariable String username, @RequestBody WishDTO wishDto) {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(customerService.completeWish(username, wishDto));
 	}
+	
+	@GetMapping("/{username}")
+	public ResponseEntity<?> getCustomer(@PathVariable String username){
+		return ResponseEntity.status(HttpStatus.OK).body(customerService.findCustomerDto(username));
+	}
 }
