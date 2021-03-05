@@ -77,9 +77,11 @@ public class CustomerService  extends BasePersistenceService<Customer, Long>{
 	public List<WishDTO> wishesFromCustomer(String username){
 		Customer customer = findCustomer(username);
 		List<WishDTO> wishesDto = new ArrayList<>();
-		customer.getWishes().stream().forEach(wish -> {
-			wishesDto.add(wishDtoConverter.fromWishToWishDTO(wish));
-		});
+		if(customer.getWishes().size() != 0) {
+			customer.getWishes().stream().forEach(wish -> {
+				wishesDto.add(wishDtoConverter.fromWishToWishDTO(wish));	
+			});
+		}
 		return wishesDto;
 	}
 	
