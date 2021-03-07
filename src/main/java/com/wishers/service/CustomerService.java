@@ -32,14 +32,27 @@ public class CustomerService  extends BasePersistenceService<Customer, Long>{
 	
 	public CustomerDTO addWish(String username, WishDTO wishDto) {
 		Customer customer = null;
-		Wish wish = null;
-		if(username != null || wishDto != null) {
+		Wish wish = wishRepo.findByTitle(wishDto.getTitle());
+		if(wish == null) {
 			customer = customerRepo.findByUsername(username);
 			wish = wishDtoConverter.fromWishDTOToWish(wishDto);
 			customer.addWish(wish);
 			return customerDtoConverter.fromCustomerToCustomerDTO(customerRepo.save(customer));
+		}else {			
+			return null;
 		}
-		return null;
+	}
+	
+	public CustomerDTO addWishToCustomer(String username, WishDTO wishDto) {
+		Customer customer = null;
+		Wish wish = null;
+		customer = customerRepo.findByUsername(username);
+		wish = wishRepo.findByTitle(wishDto.getTitle());
+		if(customer.getWishes().contains(wish)) {
+			return null;
+		}
+		customer.addWish(wish);
+		return customerDtoConverter.fromCustomerToCustomerDTO(customerRepo.save(customer));
 	}
 	
 	public CustomerDTO removeWish(String username, WishDTO wishDto) {
@@ -58,7 +71,13 @@ public class CustomerService  extends BasePersistenceService<Customer, Long>{
 		if(username != null || wishDto != null) {
 			customer = customerRepo.findByUsername(username);
 			Wish wish = wishRepo.findByTitle(wishDto.getTitle());
-			wish.setCompleted(!wish.getCompleted());
+			if(!wish.getCompleted()) {
+				wish.setCompleted(!wish.getCompleted());
+				customer.setPoints(customer.getPoints() + wish.getValue());				
+			}else {
+				wish.setCompleted(!wish.getCompleted());
+				customer.setPoints(customer.getPoints() - wish.getValue());
+			}
 			return customerDtoConverter.fromCustomerToCustomerDTO(customerRepo.save(customer));
 		}
 		return null;

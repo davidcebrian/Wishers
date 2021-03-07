@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wishers.model.dto.CustomerDTO;
 import com.wishers.model.dto.WishDTO;
 import com.wishers.model.entity.Customer;
 import com.wishers.service.CustomerService;
@@ -34,7 +35,29 @@ public class CustomerController {
 		ResponseEntity<?> response;
 		if(wishDto != null) {
 			Customer customer = customerService.findCustomer(username);
-			response = ResponseEntity.status(HttpStatus.ACCEPTED).body(customerService.addWish(username, wishDto));
+			CustomerDTO cusDto = customerService.addWish(username, wishDto);
+			if(cusDto != null && customer != null) {
+				response = ResponseEntity.status(HttpStatus.ACCEPTED).body(cusDto);				
+			}else {
+				response = ResponseEntity.status(HttpStatus.FOUND).body(Errores.EXISTE_WISH_NAME);
+			}
+		}else {
+			response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Errores.PETICION_INCORRECTA);
+		}
+		return response;
+	}
+	
+	@PostMapping("/{username}/wish/customer")
+	public ResponseEntity<?> addWishToCustomer(@PathVariable String username, @RequestBody WishDTO wishDto) {
+		ResponseEntity<?> response;
+		if(wishDto != null) {
+			Customer customer = customerService.findCustomer(username);
+			CustomerDTO cusDto = customerService.addWishToCustomer(username, wishDto);
+			if(customer != null && cusDto != null) {
+				response = ResponseEntity.status(HttpStatus.ACCEPTED).body(cusDto);				
+			}else {
+				response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Errores.PETICION_INCORRECTA);
+			}
 		}else {
 			response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Errores.PETICION_INCORRECTA);
 		}
