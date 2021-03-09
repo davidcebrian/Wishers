@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.wishers.model.entity.Comment;
 import com.wishers.model.entity.Customer;
 import com.wishers.model.entity.Wish;
+import com.wishers.model.repo.CommentRepository;
 import com.wishers.service.CustomerService;
 
 @Component
@@ -15,14 +17,22 @@ public class WishDTOConverter {
 
 	@Autowired
 	private CustomerService customerService;
+	@Autowired
+	private CommentRepository commRepo;
 	
 	public Wish fromWishDTOToWish(WishDTO wishDto) {
 		Wish wish = new Wish();
 		List<Customer> customers = new ArrayList();
+		List<Comment> comments = new ArrayList();
 		wishDto.getCustomers().forEach(username -> {
 			Customer cus = customerService.findCustomer(username);
 			customers.add(cus);
 		});
+		wishDto.getComments().forEach(comment-> {
+			Comment comm = commRepo.findByTitleAndOwner(comment.getTitle(), comment.getOwner());
+			comments.add(comm);
+		});
+		wish.setComments(comments);
 		wish.setCustomers(customers);
 		wish.setDescription(wishDto.getDescription());
 		wish.setTitle(wishDto.getTitle());
@@ -38,6 +48,14 @@ public class WishDTOConverter {
 			String nombre = cus.getUsername();
 			nombres.add(nombre);
 		});
+		List<CommentDTO> comments = new ArrayList();
+		wish.getComments().forEach(com -> {
+			CommentDTO commDto = new CommentDTO();
+			commDto.setComment(com.getComment());
+			commDto.setOwner(com.getOwner());
+			commDto.setTitle(com.getTitle());
+		});
+		wishDto.setComments(comments);
 		wishDto.setCustomers(nombres);
 		wishDto.setDescription(wish.getDescription());
 		wishDto.setTitle(wish.getTitle());

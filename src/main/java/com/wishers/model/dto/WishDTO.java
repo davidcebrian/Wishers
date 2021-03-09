@@ -12,8 +12,17 @@ public class WishDTO {
 	private String description;
 	private Long value;
 	private List<String> customers;
+	private List<CommentDTO> comments;
 	private Boolean completed;
 	
+	
+	
+	public List<CommentDTO> getComments() {
+		return comments;
+	}
+	public void setComments(List<CommentDTO> comments) {
+		this.comments = comments;
+	}
 	public Boolean getCompleted() {
 		return completed;
 	}

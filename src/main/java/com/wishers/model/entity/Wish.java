@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 @SuppressWarnings("serial")
@@ -18,6 +19,37 @@ public class Wish extends BaseEntity{
 	private Long value;
 	private Boolean completed;
 	
+	@OneToMany(mappedBy = "wish")
+	private List<Comment> comments;
+	
+	//TODO PERSINSTENCE
+	private Valoration valoration;
+	
+	
+	
+	
+	
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+	
+	public void addComment(Comment comment) {
+		this.comments.add(comment);
+	}
+	
+	public void removeComment(Comment comment) {
+		this.comments.remove(comment);
+	}
+	
+	public Valoration getValoration() {
+		return valoration;
+	}
+	public void setValoration(Valoration valoration) {
+		this.valoration = valoration;
+	}
 	public Boolean getCompleted() {
 		return completed;
 	}
