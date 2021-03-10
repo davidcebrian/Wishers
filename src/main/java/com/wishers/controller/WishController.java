@@ -33,13 +33,12 @@ public class WishController {
 		private WishRepository wishRepo;
 		
 		
-		@PostMapping("/comment")
+		@PostMapping("/{title}/comment")
 		public ResponseEntity<?> addComment(@PathVariable String title, @RequestBody CommentDTO commDto) {
 			ResponseEntity<?> response;
 			if(commDto != null) {
-				Wish wish = wishRepo.findByTitle(title);
 				WishDTO wishDto = wishService.addComment(title, commDto);
-				if(wishDto != null && wish != null) {
+				if(wishDto != null) {
 					response = ResponseEntity.status(HttpStatus.ACCEPTED).body(wishDto);				
 				}else {
 					response = ResponseEntity.status(HttpStatus.FOUND).body(Errores.EXISTE_WISH_NAME);

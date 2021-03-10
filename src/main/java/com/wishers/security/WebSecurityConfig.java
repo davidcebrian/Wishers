@@ -53,6 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
            					.antMatchers(HttpMethod.GET, "/customer/*").hasRole(UserRole.USER.name())
            					.antMatchers(HttpMethod.PUT, "/customer/**").hasRole(UserRole.USER.name())
            					.antMatchers(HttpMethod.POST, "/customer/*").hasRole(UserRole.ADMIN.name())
+           					.antMatchers(HttpMethod.POST, "/wish/*").hasRole(UserRole.USER.name())
            					.anyRequest().authenticated()
            				.and()
            					.addFilter(new JWTAuthenticationFilter(authenticationManagerBean()))

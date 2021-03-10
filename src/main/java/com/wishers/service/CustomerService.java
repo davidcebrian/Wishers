@@ -85,7 +85,7 @@ public class CustomerService  extends BasePersistenceService<Customer, Long>{
 	
 	public List<CustomerDTO> allCustomers(){
 		List<Customer> customers = customerRepo.findAll();
-		List<CustomerDTO> customersDTO = new ArrayList();
+		List<CustomerDTO> customersDTO = new ArrayList<CustomerDTO>();
 		customers.stream().forEach(cus -> {
 			CustomerDTO cusDto = customerDtoConverter.fromCustomerToCustomerDTO(cus);
 			customersDTO.add(cusDto);

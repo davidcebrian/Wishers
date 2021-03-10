@@ -1,13 +1,19 @@
 package com.wishers.model.entity;
 
+
 @SuppressWarnings("serial")
+
 public class Valoration extends BaseEntity{
 	private static final long INITIAL_VALORS = 0;
 	
 	private Long likes;
+	
 	private Long dislikes;
 	
+	
+	
 	public Valoration() {
+		super();
 		this.likes = INITIAL_VALORS;
 		this.dislikes = INITIAL_VALORS;
 	}

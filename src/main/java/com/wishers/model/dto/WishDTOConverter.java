@@ -54,6 +54,7 @@ public class WishDTOConverter {
 			commDto.setComment(com.getComment());
 			commDto.setOwner(com.getOwner());
 			commDto.setTitle(com.getTitle());
+			comments.add(commDto);
 		});
 		wishDto.setComments(comments);
 		wishDto.setCustomers(nombres);
@@ -61,6 +62,8 @@ public class WishDTOConverter {
 		wishDto.setTitle(wish.getTitle());
 		wishDto.setValue(wish.getValue());
 		wishDto.setCompleted(wish.getCompleted());
+		wishDto.setLikes(wish.getValoration().getLikes());
+		wishDto.setDislikes(wish.getValoration().getDislikes());
 		return wishDto;
 	}
 }
