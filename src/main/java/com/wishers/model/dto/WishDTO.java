@@ -18,7 +18,6 @@ public class WishDTO {
 	private Long Dislikes;
 	
 	
-	
 	public Long getLikes() {
 		return likes;
 	}

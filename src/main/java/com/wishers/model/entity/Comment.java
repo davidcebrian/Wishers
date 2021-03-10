@@ -14,8 +14,14 @@ public class Comment extends BaseEntity{
 	private String title;
 	private String comment;
 	
-	//TODO
 	private Valoration valoration;
+	
+	//@ManyToOne
+	//	@JoinColumn(name="parent_id")
+	//	private Comment parent;
+	//
+	//	@OneToMany(mappedBy="parent", cascade = CascadeType.ALL)
+	//	private List<Comment> response = new ArrayList<Comment>();
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn( name = "wish_id")
@@ -29,6 +35,7 @@ public class Comment extends BaseEntity{
 	public Comment(Wish wish) {
 		super();
 		this.wish = wish;
+		this.valoration = new Valoration();
 	}
 	
 	public Valoration getValoration() {

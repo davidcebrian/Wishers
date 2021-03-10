@@ -54,6 +54,8 @@ public class WishDTOConverter {
 			commDto.setComment(com.getComment());
 			commDto.setOwner(com.getOwner());
 			commDto.setTitle(com.getTitle());
+			commDto.setLikes(com.getValoration().getLikes());
+			commDto.setDislikes(com.getValoration().getDislikes());
 			comments.add(commDto);
 		});
 		wishDto.setComments(comments);

@@ -11,9 +11,22 @@ public class CommentDTO {
 	private String title;
 	private String comment;
 	
-	//TODO
-	//private ValorationDTO valoration;
+	private Long likes;
+	private Long Dislikes;
 	
+	
+	public Long getLikes() {
+		return likes;
+	}
+	public void setLikes(Long likes) {
+		this.likes = likes;
+	}
+	public Long getDislikes() {
+		return Dislikes;
+	}
+	public void setDislikes(Long dislikes) {
+		Dislikes = dislikes;
+	}
 
 	public String getOwner() {
 		return owner;

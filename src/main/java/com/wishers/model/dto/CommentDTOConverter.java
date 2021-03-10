@@ -10,8 +10,6 @@ import com.wishers.model.repo.WishRepository;
 public class CommentDTOConverter {
 
 	@Autowired
-	private WishDTOConverter wishConverter;
-	@Autowired
 	private WishRepository wishRepo;
 	
 	public Comment fromCommentDTOToComment(CommentDTO commentDto) {
@@ -27,6 +25,8 @@ public class CommentDTOConverter {
 		commentDto.setComment(comment.getComment());
 		commentDto.setOwner(comment.getOwner());
 		commentDto.setTitle(comment.getTitle());
+		commentDto.setLikes(comment.getValoration().getLikes());
+		commentDto.setDislikes(comment.getValoration().getDislikes());
 		return commentDto;
 	}
 }
